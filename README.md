@@ -8,6 +8,11 @@
   <a href="#citation">Citation</a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/user-attachments/assets/2450e56b-d522-4e7b-a194-9f96b7b5a605"><img src="https://github.com/user-attachments/assets/2450e56b-d522-4e7b-a194-9f96b7b5a605" width="900" alt="AP-WIM image overlay, wavelet coefficient heatmaps at coarse and fine scales, and attribution summaries by direction and scale."></a><br>
+  <em>AP-WIM attribution for an image, shown in the pixel plane and across wavelet scales and directions.</em>
+</p>
+
 ## Overview
 
 AP-WIM identifies image or audio structure that can help restore a selected score from a frozen neural model. It starts from the observed input in a multilevel discrete wavelet representation, updates the coefficients using local score gradients and coefficient-scaled steps, and accumulates contributions along the resulting path. The image implementation projects the attributions onto the pixel grid. The audio implementation analyzes the waveform and maps the attributions onto the log-mel spectrogram used by the classifier.
