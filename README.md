@@ -1,11 +1,12 @@
 # Adaptive-Path Wavelet Interpretation Maps for Auditing Neural Content Scorers
 
 <p align="center">
-  <strong>CIKM 2026</strong><br>
+  <strong>🎓 CIKM 2026</strong><br>
   Zhibo Jin · Zhiyu Zhu · Jiayu Zhang · Huijie Xu · Biaoliang Chen · Nan Yang · Fang Chen · Jianlong Zhou<br>
-  <a href="https://doi.org/10.1145/3799682.3841106">Paper</a> ·
-  <a href="#quick-start">Quick Start</a> ·
-  <a href="#citation">Citation</a>
+  <a href="https://doi.org/10.1145/3799682.3841106">📄 Paper</a> &nbsp;·&nbsp;
+  <a href="#quick-start">⚡ Quick Start</a> &nbsp;·&nbsp;
+  <a href="#evaluation">📊 Evaluation</a> &nbsp;·&nbsp;
+  <a href="#citation">📚 Citation</a>
 </p>
 
 <p align="center">
@@ -15,16 +16,16 @@
 
 ## Overview
 
-AP-WIM identifies image or audio structure that can help restore a selected score from a frozen neural model. It starts from the observed input in a multilevel discrete wavelet representation, updates the coefficients using local score gradients and coefficient-scaled steps, and accumulates contributions along the resulting path. The image implementation projects the attributions onto the pixel grid. The audio implementation analyzes the waveform and maps the attributions onto the log-mel spectrogram used by the classifier.
+**AP-WIM** identifies image or audio structure that can help restore a selected score from a frozen neural model. It starts from the observed input in a multilevel discrete wavelet representation, updates the coefficients using local score gradients and coefficient-scaled steps, and accumulates contributions along the resulting path. The image implementation projects the attributions onto the pixel grid. The audio implementation analyzes the waveform and maps the attributions onto the log-mel spectrogram used by the classifier.
 
 ## Evaluation
 
 | Experiment | Frozen scorer | Evaluation |
 | --- | --- | --- |
-| ImageNet classification | EfficientNet-B0 on a 1,000-image tensor subset | Insertion, deletion, and ROAD |
-| ESC-50 classification | ResNet-50 and MobileNetV2 on single-channel log-mel inputs | Perturbation tests on fold 1 and a five-fold attribution stability check |
-| Tiny-ImageNet retrieval | Cosine similarity between frozen EfficientNet-B0 embeddings | Ranking insertion AUC for target score, Recall@1, Recall@5, MRR, and nDCG@10 |
-| ImageNet prototype audit | Cosine similarity to EfficientNet-B0 classifier prototypes | Insertion, deletion, and optional ROAD |
+| 🖼️ **ImageNet classification** | EfficientNet-B0 on a 1,000-image tensor subset | Insertion, deletion, and ROAD |
+| 🔊 **ESC-50 classification** | ResNet-50 and MobileNetV2 on single-channel log-mel inputs | Perturbation tests on fold 1 and a five-fold attribution stability check |
+| 🔎 **Tiny-ImageNet retrieval** | Cosine similarity between frozen EfficientNet-B0 embeddings | Ranking insertion AUC for target score, Recall@1, Recall@5, MRR, and nDCG@10 |
+| 🧪 **ImageNet prototype audit** | Cosine similarity to EfficientNet-B0 classifier prototypes | Insertion, deletion, and optional ROAD |
 
 The paper reports that AP-WIM achieved the highest mean ranking insertion AUC among ten compared attribution methods on all five Tiny-ImageNet endpoints. For target-score insertion, the improvement over the strongest observed baseline was 0.0043 AUC (95% paired-bootstrap interval 0.0022–0.0064). The paper also reports positive insertion gains for both ESC-50 backbones in the five-fold stability check.
 
@@ -53,7 +54,10 @@ See the [dataset loaders](experiments/wam_experiments/datasets.py) and [experime
 
 ## Quick Start
 
-This 32-image example generates AP-WIM maps and evaluates insertion and deletion on the same samples. The first command saves a NumPy attribution array. The second saves per-example perturbation curves and prints the aggregate AUCs. Use a fresh output directory when changing settings, since the runners can reuse existing files.
+This 32-image example generates AP-WIM maps and evaluates insertion and deletion on the same samples. The first command saves a NumPy attribution array. The second saves per-example perturbation curves and prints the aggregate AUCs.
+
+> [!TIP]
+> Use a fresh output directory when changing settings. The runners can reuse existing files.
 
 ```bash
 export APWIM_IMAGENET_TENSOR_DIR=/path/to/imagenet-tensors
